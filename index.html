@@ -39,7 +39,7 @@
         }
     </style>
 </head>
-<body class="antialiased bg-white text-gray-900 min-h-screen flex flex-col relative overflow-hidden">
+<body class="antialiased bg-white text-gray-900 min-h-screen flex flex-col relative">
 
     <!-- Watermark Overlay -->
     <div class="watermark-overlay">
@@ -84,7 +84,7 @@
         <!-- Template Section -->
         <section class="bg-blue-50 p-6 md:p-8 rounded-xl shadow-md mb-12 border border-blue-200">
             <h2 class="text-2xl lg:text-3xl font-bold text-blue-900 mb-4 flex items-center">
-                <i data-lucide="pin" class="mr-2 text-purple-600 w-7 h-7"></i> Template Recommended:
+                <span class="mr-2 text-purple-600 text-3xl">📌</span> Template Recommended:
             </h2>
             <div class="flex flex-col md:flex-row items-center md:space-x-8 space-y-6 md:space-y-0">
                 <div class="md:w-1/3">
@@ -103,7 +103,7 @@
                             rel="noopener noreferrer"
                             class="text-blue-600 hover:underline flex items-center"
                         >
-                            Jake’s Overleaf Resume <i data-lucide="external-link" class="ml-1 w-5 h-5"></i>
+                            Jake’s Overleaf Resume <span class="ml-1 text-base">🔗</span>
                         </a>
                     </h3>
                     <ul class="list-disc list-inside text-gray-700 space-y-1">
@@ -121,41 +121,41 @@
         <!-- Resume Checklist Section -->
         <section class="bg-white p-6 md:p-8 rounded-xl shadow-md mb-12 border border-gray-200">
             <h2 class="text-2xl lg:text-3xl font-bold text-blue-900 mb-6 flex items-center">
-                <i data-lucide="search" class="mr-2 text-pink-600 w-7 h-7"></i> Resume Checklist (Before You Submit)
+                <span class="mr-2 text-pink-600 text-3xl">🔍</span> Resume Checklist (Before You Submit)
             </h2>
 
             <!-- Format & Structure -->
             <div class="mb-8">
                 <h3 class="text-xl lg:text-2xl font-semibold text-blue-700 mb-4 flex items-center">
-                    <i data-lucide="check-circle-2" class="mr-2 text-green-500 w-6 h-6"></i> 1. Format & Structure
+                    <span class="mr-2 text-green-500 text-2xl">✅</span> 1. Format & Structure
                 </h3>
                 <ul class="space-y-3">
                     <li class="flex items-start text-gray-800">
-                        <i data-lucide="check-circle-2" class="text-green-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                        <span class="text-green-500 mr-2 flex-shrink-0 mt-1 text-xl">✅</span>
                         <p>
                             <strong class="text-blue-800">One page only</strong> – Recruiters won’t scroll. (Unless you're 4+ years experienced).
                         </p>
                     </li>
                     <li class="flex items-start text-gray-800">
-                        <i data-lucide="check-circle-2" class="text-green-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                        <span class="text-green-500 mr-2 flex-shrink-0 mt-1 text-xl">✅</span>
                         <p>
                             <strong class="text-blue-800">Reverse chronological order</strong> – Most recent roles/projects first.
                         </p>
                     </li>
                     <li class="flex items-start text-gray-800">
-                        <i data-lucide="check-circle-2" class="text-green-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                        <span class="text-green-500 mr-2 flex-shrink-0 mt-1 text-xl">✅</span>
                         <p>
                             Use <strong class="text-blue-800">bullet points</strong>, not paragraphs.
                         </p>
                     </li>
                     <li class="flex items-start text-gray-800">
-                        <i data-lucide="check-circle-2" class="text-green-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                        <span class="text-green-500 mr-2 flex-shrink-0 mt-1 text-xl">✅</span>
                         <p>
                             <strong class="text-blue-800">Font size:</strong> 10–11pt (legible, compact).
                         </p>
                     </li>
                     <li class="flex items-start text-gray-800">
-                        <i data-lucide="check-circle-2" class="text-green-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                        <span class="text-green-500 mr-2 flex-shrink-0 mt-1 text-xl">✅</span>
                         <p>
                             <strong class="text-blue-800">Standard Sections Order:</strong>
                         </p>
@@ -173,13 +173,13 @@
             <!-- Content Must-Haves -->
             <div>
                 <h3 class="text-xl lg:text-2xl font-semibold text-blue-700 mb-4 flex items-center">
-                    <i data-lucide="check-circle-2" class="mr-2 text-green-500 w-6 h-6"></i> 2. Content Must-Haves
+                    <span class="mr-2 text-green-500 text-2xl">✅</span> 2. Content Must-Haves
                 </h3>
 
                 <!-- Education -->
                 <div class="mb-6 bg-blue-50 p-4 rounded-lg shadow-sm border border-blue-200">
                     <h4 class="text-lg font-semibold text-blue-900 mb-2 flex items-center">
-                        <i data-lucide="graduation-cap" class="mr-2 text-purple-600 w-5 h-5"></i> Education
+                        <span class="mr-2 text-purple-600 text-xl">📚</span> Education
                     </h4>
                     <ul class="list-disc list-inside text-gray-800 space-y-1">
                         <li>Degree, Institute, Location, Year</li>
@@ -190,7 +190,7 @@
                 <!-- Experience -->
                 <div class="mb-6 bg-blue-50 p-4 rounded-lg shadow-sm border border-blue-200">
                     <h4 class="text-lg font-semibold text-blue-900 mb-2 flex items-center">
-                        <i data-lucide="briefcase" class="mr-2 text-pink-600 w-5 h-5"></i> Experience
+                        <span class="mr-2 text-pink-600 text-xl">💼</span> Experience
                     </h4>
                     <ul class="list-disc list-inside text-gray-800 space-y-1">
                         <li>Company name, role, duration</li>
@@ -209,7 +209,7 @@
                 <!-- Projects -->
                 <div class="mb-6 bg-blue-50 p-4 rounded-lg shadow-sm border border-blue-200">
                     <h4 class="text-lg font-semibold text-blue-900 mb-2 flex items-center">
-                        <i data-lucide="laptop" class="mr-2 text-purple-600 w-5 h-5"></i> Projects
+                        <span class="mr-2 text-purple-600 text-xl">💻</span> Projects
                     </h4>
                     <ul class="list-disc list-inside text-gray-800 space-y-1">
                         <li>Only <strong class="text-blue-800">2–3 strong projects</strong>.</li>
@@ -228,7 +228,7 @@
                 <!-- Skills -->
                 <div class="bg-blue-50 p-4 rounded-lg shadow-sm border border-blue-200">
                     <h4 class="text-lg font-semibold text-blue-900 mb-2 flex items-center">
-                        <i data-lucide="wrench" class="mr-2 text-pink-600 w-5 h-5"></i> Skills
+                        <span class="mr-2 text-pink-600 text-xl">🛠️</span> Skills
                     </h4>
                     <ul class="list-disc list-inside text-gray-800 space-y-1">
                         <li>
@@ -250,7 +250,7 @@
         <!-- ATS Optimization Tips -->
         <section class="bg-purple-50 p-6 md:p-8 rounded-xl shadow-md mb-12 border border-purple-200">
             <h2 class="text-2xl lg:text-3xl font-bold text-blue-900 mb-6 flex items-center">
-                <i data-lucide="search" class="mr-2 text-blue-600 w-7 h-7"></i> ATS Optimization Tips
+                <span class="mr-2 text-blue-600 text-3xl">🔍</span> ATS Optimization Tips
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -284,7 +284,7 @@
         <!-- Bonus: Free Resume Scoring Tools -->
         <section class="bg-pink-50 p-6 md:p-8 rounded-xl shadow-md mb-12 border border-pink-200">
             <h2 class="text-2xl lg:text-3xl font-bold text-blue-900 mb-6 flex items-center">
-                <i data-lucide="star" class="mr-2 text-purple-600 w-7 h-7"></i> Bonus: Free Resume Scoring Tools
+                <span class="mr-2 text-purple-600 text-3xl">⭐</span> Bonus: Free Resume Scoring Tools
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                 <div class="bg-white p-5 rounded-lg shadow-sm border border-pink-100 flex flex-col items-center">
@@ -297,7 +297,7 @@
                     <h3 class="text-xl font-semibold text-pink-700 mb-2">Resume Worded</h3>
                     <p class="text-gray-700">Gives resume score + instant tips.</p>
                     <a href="https://resumeworded.com/" target="_blank" rel="noopener noreferrer" class="mt-3 text-blue-600 hover:text-blue-800 flex items-center">
-                        Learn More <i data-lucide="external-link" class="ml-1 w-4 h-4"></i>
+                        Learn More <span class="ml-1 text-base">🔗</span>
                     </a>
                 </div>
                 <div class="bg-white p-5 rounded-lg shadow-sm border border-pink-100 flex flex-col items-center">
@@ -310,7 +310,7 @@
                     <h3 class="text-xl font-semibold text-pink-700 mb-2">Jobscan</h3>
                     <p class="text-gray-700">Compare resume vs job description.</p>
                     <a href="https://www.jobscan.co/" target="_blank" rel="noopener noreferrer" class="mt-3 text-blue-600 hover:text-blue-800 flex items-center">
-                        Learn More <i data-lucide="external-link" class="ml-1 w-4 h-4"></i>
+                        Learn More <span class="ml-1 text-base">🔗</span>
                     </a>
                 </div>
                 <div class="bg-white p-5 rounded-lg shadow-sm border border-pink-100 flex flex-col items-center">
@@ -323,7 +323,7 @@
                     <h3 class="text-xl font-semibold text-pink-700 mb-2">Rezi.ai</h3>
                     <p class="text-gray-700">AI resume checks and suggestions.</p>
                     <a href="#" class="mt-3 text-blue-600 hover:text-blue-800 flex items-center">
-                        Learn More <i data-lucide="external-link" class="ml-1 w-4 h-4"></i>
+                        Learn More <span class="ml-1 text-base">🔗</span>
                     </a>
                 </div>
             </div>
@@ -332,35 +332,35 @@
         <!-- Recruiter Red Flags to Avoid -->
         <section class="bg-red-50 p-6 md:p-8 rounded-xl shadow-md mb-12 border border-red-200">
             <h2 class="text-2xl lg:text-3xl font-bold text-blue-900 mb-6 flex items-center">
-                <i data-lucide="x-circle" class="mr-2 text-red-600 w-7 h-7"></i> Recruiter Red Flags to Avoid
+                <span class="mr-2 text-red-600 text-3xl">❌</span> Recruiter Red Flags to Avoid
             </h2>
             <ul class="space-y-3">
                 <li class="flex items-start text-gray-800">
-                    <i data-lucide="x-circle" class="text-red-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                    <span class="text-red-500 mr-2 flex-shrink-0 mt-1 text-xl">❌</span>
                     <p>
                         <strong class="text-red-700">More than 1 page</strong> (unless you’re 4+ years experienced).
                     </p>
                 </li>
                 <li class="flex items-start text-gray-800">
-                    <i data-lucide="x-circle" class="text-red-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                    <span class="text-red-500 mr-2 flex-shrink-0 mt-1 text-xl">❌</span>
                     <p>
                         <strong class="text-red-700">Lies / skills you can’t explain.</strong>
                     </p>
                 </li>
                 <li class="flex items-start text-gray-800">
-                    <i data-lucide="x-circle" class="text-red-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                    <span class="text-red-500 mr-2 flex-shrink-0 mt-1 text-xl">❌</span>
                     <p>
                         <strong class="text-red-700">Fluff</strong> like “Passionate, hardworking, team player”.
                     </p>
                 </li>
                 <li class="flex items-start text-gray-800">
-                    <i data-lucide="x-circle" class="text-red-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                    <span class="text-red-500 mr-2 flex-shrink-0 mt-1 text-xl">❌</span>
                     <p>
                         <strong class="text-red-700">No project links or GitHub.</strong>
                     </p>
                 </li>
                 <li class="flex items-start text-gray-800">
-                    <i data-lucide="x-circle" class="text-red-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                    <span class="text-red-500 mr-2 flex-shrink-0 mt-1 text-xl">❌</span>
                     <p>
                         <strong class="text-red-700">Mentioning high school details</strong> in college resume.
                     </p>
@@ -371,29 +371,29 @@
         <!-- Pro Tips for Standing Out -->
         <section class="bg-blue-100 p-6 md:p-8 rounded-xl shadow-md mb-12 border border-blue-200">
             <h2 class="text-2xl lg:text-3xl font-bold text-blue-900 mb-6 flex items-center">
-                <i data-lucide="pin" class="mr-2 text-purple-600 w-7 h-7"></i> Pro Tips for Standing Out
+                <span class="mr-2 text-purple-600 text-3xl">📌</span> Pro Tips for Standing Out
             </h2>
             <ul class="space-y-3">
                 <li class="flex items-start text-gray-800">
-                    <i data-lucide="pin" class="text-blue-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                    <span class="text-blue-500 mr-2 flex-shrink-0 mt-1 text-xl">📌</span>
                     <p>
                         Add a <strong class="text-blue-800">LinkedIn + GitHub link</strong> at top right (make sure they’re updated).
                     </p>
                 </li>
                 <li class="flex items-start text-gray-800">
-                    <i data-lucide="pin" class="text-blue-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                    <span class="text-blue-500 mr-2 flex-shrink-0 mt-1 text-xl">📌</span>
                     <p>
                         <strong class="text-blue-800">Tailor your resume slightly for every job</strong> (skills section/order).
                     </p>
                 </li>
                 <li class="flex items-start text-gray-800">
-                    <i data-lucide="pin" class="text-blue-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                    <span class="text-blue-500 mr-2 flex-shrink-0 mt-1 text-xl">📌</span>
                     <p>
                         Mention <strong class="text-blue-800">outcomes and metrics</strong> for each role or project.
                     </p>
                 </li>
                 <li class="flex items-start text-gray-800">
-                    <i data-lucide="pin" class="text-blue-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                    <span class="text-blue-500 mr-2 flex-shrink-0 mt-1 text-xl">📌</span>
                     <p>
                         <strong class="text-blue-800">Have someone review it.</strong>
                     </p>
@@ -421,25 +421,8 @@
         &copy; <span id="current-year"></span> TechUprise Resume Guide
     </footer>
 
-    <!-- Lucide Icons CDN for visual elements -->
-    <script src="https://cdn.jsdelivr.net/npm/lucide@latest" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Lucide icons
-            // The 'defer' attribute on the script tag helps ensure it's loaded before DOMContentLoaded fires,
-            // but adding an extra check here for maximum robustness in various environments.
-            if (typeof lucide !== 'undefined' && lucide.createIcons) {
-                try {
-                    lucide.createIcons();
-                } catch (error) {
-                    console.error("Error initializing Lucide icons:", error);
-                }
-            } else {
-                // Fallback for cases where Lucide might still not be ready,
-                // or if the CDN itself fails to load.
-                console.warn("Lucide library not loaded or createIcons not found. Icons may not display.");
-            }
-
             // Set dynamic copyright year in footer
             const currentYearSpan = document.getElementById('current-year');
             if (currentYearSpan) {
