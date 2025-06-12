@@ -1,416 +1,453 @@
-import React, { useState, useEffect } from 'react';
-import { CheckCircle2, XCircle, Pin, ExternalLink, GraduationCap, Briefcase, Laptop, Wrench, Search, Star } from 'lucide-react'; // Icons
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechUprise: Ultimate Resume Guide</title>
+    <!-- Tailwind CSS CDN - essential for styles to work on GitHub Pages without a build step -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styles for the TechUprise watermark */
+        .watermark-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.05; /* Very subtle */
+            pointer-events: none; /* Allows clicks to pass through */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .watermark-text {
+            font-size: 8rem; /* Large font size */
+            font-weight: 800; /* Extra bold */
+            color: #93c5fd; /* Light blue color for watermark */
+            transform: rotate(-45deg); /* Rotate for a dynamic look */
+            user-select: none; /* Prevent text selection */
+            background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 10px, transparent 10px, transparent 20px);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 20px 20px;
+        }
+        /* Custom colors for consistency */
+        .text-dark-blue {
+            color: #1a202c; /* A darker shade for headings */
+        }
+    </style>
+</head>
+<body class="antialiased bg-white text-gray-900 min-h-screen flex flex-col relative overflow-hidden">
 
-// Main App Component
-const App = () => {
-  // State for Firebase and authentication, though not used for persistence in this static guide
-  const [db, setDb] = useState(null);
-  const [auth, setAuth] = useState(null);
-  const [userId, setUserId] = useState(null);
-  const [isAuthReady, setIsAuthReady] = useState(false);
-
-  // useEffect for Firebase initialization (dummy for static app)
-  // IMPORTANT: For a truly functional app with persistence, you would need
-  // to initialize Firebase and handle authentication here.
-  // This is a placeholder to meet the structural requirement for code generation.
-  useEffect(() => {
-    // For this static guide, we just set auth as ready
-    setIsAuthReady(true);
-    setUserId("guide-viewer-id"); // Dummy user ID for demonstration
-  }, []);
-
-  return (
-    <div className="font-inter antialiased bg-white text-gray-900 min-h-screen flex flex-col relative overflow-hidden">
-      {/* Watermark Overlay */}
-      <div className="absolute inset-0 z-0 opacity-5 pointer-events-none flex items-center justify-center">
-        <span className="text-9xl font-extrabold text-blue-300 transform -rotate-45 select-none" style={{
-          backgroundImage: 'repeating-linear-gradient(45deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 10px, transparent 10px, transparent 20px)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundSize: '20px 20px',
-        }}>
-          TechUprise
-        </span>
-      </div>
-
-      {/* Main Content Area */}
-      <main className="flex-grow container mx-auto px-4 py-8 md:px-8 lg:px-12 relative z-10">
-
-        {/* Hero Section */}
-        <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 md:p-12 lg:p-16 rounded-xl shadow-lg mb-12 relative overflow-hidden">
-          {/* Decorative shapes */}
-          <div className="absolute top-0 left-0 w-32 h-32 bg-purple-500 opacity-20 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-          <div className="absolute bottom-0 right-0 w-48 h-48 bg-blue-500 opacity-20 rounded-full translate-x-1/2 translate-y-1/2"></div>
-
-          {/* Product Name */}
-          <p className="text-xl sm:text-2xl lg:text-3xl font-extrabold mb-2 leading-tight">
-            TechUprise: Interview Xpress 30
-          </p>
-          {/* Tagline */}
-          <p className="text-lg sm:text-xl font-light mb-4 italic">
-            From Resume to Recruiter Calls — All in 30 Days.
-          </p>
-          {/* Guide Title */}
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 leading-tight">
-            Ultimate Resume Guide for Tech Students
-          </h1>
-
-          <div className="mt-6 flex flex-col sm:flex-row items-center sm:space-x-4 space-y-4 sm:space-y-0">
-            <img
-              src="https://placehold.co/150x150/800080/FFFFFF?text=Success"
-              alt="Success Icon"
-              className="w-20 h-20 sm:w-24 sm:h-24 rounded-full shadow-md border-4 border-purple-300"
-              onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/150x150/800080/FFFFFF?text=Success'; }}
-            />
-            <p className="text-md sm:text-lg italic font-medium">
-              "Loved by recruiters at FAANG & startups alike."
-            </p>
-          </div>
-        </section>
-
-        {/* Template Section */}
-        <section className="bg-blue-50 p-6 md:p-8 rounded-xl shadow-md mb-12 border border-blue-200">
-          <h2 className="text-2xl lg:text-3xl font-bold text-blue-900 mb-4 flex items-center">
-            <Pin className="mr-2 text-purple-600" size={28} /> Template Recommended:
-          </h2>
-          <div className="flex flex-col md:flex-row items-center md:space-x-8 space-y-6 md:space-y-0">
-            <div className="md:w-1/3">
-              <img
-                src="https://placehold.co/300x200/ADD8E6/00008B?text=Clean+Resume"
-                alt="Clean Resume Template"
-                className="w-full h-auto rounded-lg shadow-lg border border-blue-300"
-                onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/300x200/ADD8E6/00008B?text=Clean+Resume'; }}
-              />
-            </div>
-            <div className="md:w-2/3">
-              <h3 className="text-xl font-semibold text-purple-700 mb-2">
-                <a
-                  href="#" // IMPORTANT: Replace '#' with the actual URL for Jake's Overleaf Resume
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline flex items-center"
-                >
-                  Jake’s Overleaf Resume <ExternalLink className="ml-1" size={18} />
-                </a>
-              </h3>
-              <ul className="list-disc list-inside text-gray-700 space-y-1">
-                <li>Clean and modern design.</li>
-                <li>Single-page format.</li>
-                <li>Highly ATS-friendly (Applicant Tracking System).</li>
-              </ul>
-              <p className="mt-4 text-gray-700">
-                This template is a favorite among recruiters at top tech companies.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Resume Checklist Section */}
-        <section className="bg-white p-6 md:p-8 rounded-xl shadow-md mb-12 border border-gray-200">
-          <h2 className="text-2xl lg:text-3xl font-bold text-blue-900 mb-6 flex items-center">
-            <Search className="mr-2 text-pink-600" size={28} /> Resume Checklist (Before You Submit)
-          </h2>
-
-          {/* Format & Structure */}
-          <div className="mb-8">
-            <h3 className="text-xl lg:text-2xl font-semibold text-blue-700 mb-4 flex items-center">
-              <CheckCircle2 className="mr-2 text-green-500" size={24} /> 1. Format & Structure
-            </h3>
-            <ul className="space-y-3">
-              <li className="flex items-start text-gray-800">
-                <CheckCircle2 className="text-green-500 mr-2 flex-shrink-0 mt-1" size={20} />
-                <p>
-                  <strong className="text-blue-800">One page only</strong> – Recruiters won’t scroll. (Unless you're 4+ years experienced).
-                </p>
-              </li>
-              <li className="flex items-start text-gray-800">
-                <CheckCircle2 className="text-green-500 mr-2 flex-shrink-0 mt-1" size={20} />
-                <p>
-                  <strong className="text-blue-800">Reverse chronological order</strong> – Most recent roles/projects first.
-                </p>
-              </li>
-              <li className="flex items-start text-gray-800">
-                <CheckCircle2 className="text-green-500 mr-2 flex-shrink-0 mt-1" size={20} />
-                <p>
-                  Use <strong className="text-blue-800">bullet points</strong>, not paragraphs.
-                </p>
-              </li>
-              <li className="flex items-start text-gray-800">
-                <CheckCircle2 className="text-green-500 mr-2 flex-shrink-0 mt-1" size={20} />
-                <p>
-                  <strong className="text-blue-800">Font size:</strong> 10–11pt (legible, compact).
-                </p>
-              </li>
-              <li className="flex items-start text-gray-800">
-                <CheckCircle2 className="text-green-500 mr-2 flex-shrink-0 mt-1" size={20} />
-                <p>
-                  <strong className="text-blue-800">Standard Sections Order:</strong>
-                </p>
-                <ul className="list-disc list-inside ml-6 text-gray-700 mt-1">
-                  <li>Education</li>
-                  <li>Experience / Internships</li>
-                  <li>Projects</li>
-                  <li>Skills</li>
-                  <li>(Optional) Certifications / Achievements</li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-
-          {/* Content Must-Haves */}
-          <div>
-            <h3 className="text-xl lg:text-2xl font-semibold text-blue-700 mb-4 flex items-center">
-              <CheckCircle2 className="mr-2 text-green-500" size={24} /> 2. Content Must-Haves
-            </h3>
-
-            {/* Education */}
-            <div className="mb-6 bg-blue-50 p-4 rounded-lg shadow-sm border border-blue-200">
-              <h4 className="text-lg font-semibold text-blue-900 mb-2 flex items-center">
-                <GraduationCap className="mr-2 text-purple-600" size={20} /> Education
-              </h4>
-              <ul className="list-disc list-inside text-gray-800 space-y-1">
-                <li>Degree, Institute, Location, Year</li>
-                <li>Include CGPA only if above 7.0</li>
-              </ul>
-            </div>
-
-            {/* Experience */}
-            <div className="mb-6 bg-blue-50 p-4 rounded-lg shadow-sm border border-blue-200">
-              <h4 className="text-lg font-semibold text-blue-900 mb-2 flex items-center">
-                <Briefcase className="mr-2 text-pink-600" size={20} /> Experience
-              </h4>
-              <ul className="list-disc list-inside text-gray-800 space-y-1">
-                <li>Company name, role, duration</li>
-                <li>
-                  Use <strong className="text-blue-800">action verbs:</strong> Built, Designed, Automated, Increased.
-                </li>
-                <li>
-                  Mention <strong className="text-blue-800">impact:</strong> numbers &gt; responsibilities.
-                </li>
-                <li className="ml-4 italic text-gray-600">
-                  Example: Improved page load speed by 40%, automated 60% of deployment process.
-                </li>
-              </ul>
-            </div>
-
-            {/* Projects */}
-            <div className="mb-6 bg-blue-50 p-4 rounded-lg shadow-sm border border-blue-200">
-              <h4 className="text-lg font-semibold text-blue-900 mb-2 flex items-center">
-                <Laptop className="mr-2 text-purple-600" size={20} /> Projects
-              </h4>
-              <ul className="list-disc list-inside text-gray-800 space-y-1">
-                <li>Only <strong className="text-blue-800">2–3 strong projects</strong>.</li>
-                <li>
-                  <strong className="text-blue-800">Mention:</strong>
-                  <ul className="list-circle list-inside ml-6 text-gray-700 mt-1">
-                    <li>What it does</li>
-                    <li>What tech stack used</li>
-                    <li>What problem solved / outcome achieved</li>
-                  </ul>
-                </li>
-                <li>Add <strong className="text-blue-800">GitHub/Deployed link (must work!)</strong></li>
-              </ul>
-            </div>
-
-            {/* Skills */}
-            <div className="bg-blue-50 p-4 rounded-lg shadow-sm border border-blue-200">
-              <h4 className="text-lg font-semibold text-blue-900 mb-2 flex items-center">
-                <Wrench className="mr-2 text-pink-600" size={20} /> Skills
-              </h4>
-              <ul className="list-disc list-inside text-gray-800 space-y-1">
-                <li>
-                  <strong className="text-blue-800">Divide into:</strong>
-                  <ul className="list-circle list-inside ml-6 text-gray-700 mt-1">
-                    <li>Languages (Python, Java)</li>
-                    <li>Frameworks (React, Node.js)</li>
-                    <li>Tools (Git, Docker, VSCode)</li>
-                  </ul>
-                </li>
-                <li>
-                  Avoid generic words like “Teamwork”, “Fast learner” in skills section.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* ATS Optimization Tips */}
-        <section className="bg-purple-50 p-6 md:p-8 rounded-xl shadow-md mb-12 border border-purple-200">
-          <h2 className="text-2xl lg:text-3xl font-bold text-blue-900 mb-6 flex items-center">
-            <Search className="mr-2 text-blue-600" size={28} /> ATS Optimization Tips
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h3 className="text-xl font-semibold text-purple-700 mb-3">Best Practices:</h3>
-              <ul className="list-disc list-inside text-gray-800 space-y-2">
-                <li>Stick to <strong className="text-blue-800">standard section names</strong>: “Experience”, “Education”, etc.</li>
-                <li><strong className="text-blue-800">Save as PDF</strong> (not Word or image).</li>
-                <li>Use <strong className="text-blue-800">exact keywords</strong> from the job description (e.g., If JD says “React + Redux”, mention both, not just “React”).</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-purple-700 mb-3">What to Avoid:</h3>
-              <ul className="list-disc list-inside text-gray-800 space-y-2">
-                <li>Tables, columns</li>
-                <li>Logos/images/icons</li>
-                <li>Uncommon fonts</li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-8 text-center">
-            <img
-              src="https://placehold.co/400x150/00008B/FFFFFF?text=ATS+Friendly"
-              alt="ATS Friendly graphic"
-              className="mx-auto rounded-lg shadow-md border border-blue-300"
-              onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/400x150/00008B/FFFFFF?text=ATS+Friendly'; }}
-            />
-            <p className="mt-3 text-gray-600 italic">Ensure your resume passes the Applicant Tracking System test!</p>
-          </div>
-        </section>
-
-        {/* Bonus: Free Resume Scoring Tools */}
-        <section className="bg-pink-50 p-6 md:p-8 rounded-xl shadow-md mb-12 border border-pink-200">
-          <h2 className="text-2xl lg:text-3xl font-bold text-blue-900 mb-6 flex items-center">
-            <Star className="mr-2 text-purple-600" size={28} /> Bonus: Free Resume Scoring Tools
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            <div className="bg-white p-5 rounded-lg shadow-sm border border-pink-100 flex flex-col items-center">
-              <img
-                src="https://placehold.co/80x80/FFC0CB/800080?text=Worded"
-                alt="Resume Worded Logo"
-                className="w-20 h-20 rounded-full mb-3"
-                onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/80x80/FFC0CB/800080?text=Worded'; }}
-              />
-              <h3 className="text-xl font-semibold text-pink-700 mb-2">Resume Worded</h3>
-              <p className="text-gray-700">Gives resume score + instant tips.</p>
-              <a href="#" className="mt-3 text-blue-600 hover:text-blue-800 flex items-center">
-                Learn More <ExternalLink className="ml-1" size={16} />
-              </a>
-            </div>
-            <div className="bg-white p-5 rounded-lg shadow-sm border border-pink-100 flex flex-col items-center">
-              <img
-                src="https://placehold.co/80x80/FFC0CB/800080?text=Jobscan"
-                alt="Jobscan Logo"
-                className="w-20 h-20 rounded-full mb-3"
-                onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/80x80/FFC0CB/800080?text=Jobscan'; }}
-              />
-              <h3 className="text-xl font-semibold text-pink-700 mb-2">Jobscan</h3>
-              <p className="text-gray-700">Compare resume vs job description.</p>
-              <a href="#" className="mt-3 text-blue-600 hover:text-blue-800 flex items-center">
-                Learn More <ExternalLink className="ml-1" size={16} />
-              </a>
-            </div>
-            <div className="bg-white p-5 rounded-lg shadow-sm border border-pink-100 flex flex-col items-center">
-              <img
-                src="https://placehold.co/80x80/FFC0CB/800080?text=Rezi.ai"
-                alt="Rezi.ai Logo"
-                className="w-20 h-20 rounded-full mb-3"
-                onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/80x80/FFC0CB/800080?text=Rezi.ai'; }}
-              />
-              <h3 className="text-xl font-semibold text-pink-700 mb-2">Rezi.ai</h3>
-              <p className="text-gray-700">AI resume checks and suggestions.</p>
-              <a href="#" className="mt-3 text-blue-600 hover:text-blue-800 flex items-center">
-                Learn More <ExternalLink className="ml-1" size={16} />
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Recruiter Red Flags to Avoid */}
-        <section className="bg-red-50 p-6 md:p-8 rounded-xl shadow-md mb-12 border border-red-200">
-          <h2 className="text-2xl lg:text-3xl font-bold text-blue-900 mb-6 flex items-center">
-            <XCircle className="mr-2 text-red-600" size={28} /> Recruiter Red Flags to Avoid
-          </h2>
-          <ul className="space-y-3">
-            <li className="flex items-start text-gray-800">
-              <XCircle className="text-red-500 mr-2 flex-shrink-0 mt-1" size={20} />
-              <p>
-                <strong className="text-red-700">More than 1 page</strong> (unless you’re 4+ years experienced).
-              </p>
-            </li>
-            <li className="flex items-start text-gray-800">
-              <XCircle className="text-red-500 mr-2 flex-shrink-0 mt-1" size={20} />
-              <p>
-                <strong className="text-red-700">Lies / skills you can’t explain.</strong>
-              </p>
-            </li>
-            <li className="flex items-start text-gray-800">
-              <XCircle className="text-red-500 mr-2 flex-shrink-0 mt-1" size={20} />
-              <p>
-                <strong className="text-red-700">Fluff</strong> like “Passionate, hardworking, team player”.
-              </p>
-            </li>
-            <li className="flex items-start text-gray-800">
-              <XCircle className="text-red-500 mr-2 flex-shrink-0 mt-1" size={20} />
-              <p>
-                <strong className="text-red-700">No project links or GitHub.</strong>
-              </p>
-            </li>
-            <li className="flex items-start text-gray-800">
-              <XCircle className="text-red-500 mr-2 flex-shrink-0 mt-1" size={20} />
-              <p>
-                <strong className="text-red-700">Mentioning high school details</strong> in college resume.
-              </p>
-            </li>
-          </ul>
-        </section>
-
-        {/* Pro Tips for Standing Out */}
-        <section className="bg-blue-100 p-6 md:p-8 rounded-xl shadow-md border border-blue-200">
-          <h2 className="text-2xl lg:text-3xl font-bold text-blue-900 mb-6 flex items-center">
-            <Pin className="mr-2 text-purple-600" size={28} /> Pro Tips for Standing Out
-          </h2>
-          <ul className="space-y-3">
-            <li className="flex items-start text-gray-800">
-              <Pin className="text-blue-500 mr-2 flex-shrink-0 mt-1" size={20} />
-              <p>
-                Add a <strong className="text-blue-800">LinkedIn + GitHub link</strong> at top right (make sure they’re updated).
-              </p>
-            </li>
-            <li className="flex items-start text-gray-800">
-              <Pin className="text-blue-500 mr-2 flex-shrink-0 mt-1" size={20} />
-              <p>
-                <strong className="text-blue-800">Tailor your resume slightly for every job</strong> (skills section/order).
-              </p>
-            </li>
-            <li className="flex items-start text-gray-800">
-              <Pin className="text-blue-500 mr-2 flex-shrink-0 mt-1" size={20} />
-              <p>
-                Mention <strong className="text-blue-800">outcomes and metrics</strong> for each role or project.
-              </p>
-            </li>
-            <li className="flex items-start text-gray-800">
-              <Pin className="text-blue-500 mr-2 flex-shrink-0 mt-1" size={20} />
-              <p>
-                <strong className="text-blue-800">Have someone review it.</strong>
-              </p>
-            </li>
-          </ul>
-          <div className="mt-8 text-center">
-            <img
-              src="https://placehold.co/400x150/800080/FFFFFF?text=Stand+Out"
-              alt="Stand Out graphic"
-              className="mx-auto rounded-lg shadow-md border border-purple-300"
-              onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/400x150/800080/FFFFFF?text=Stand+Out'; }}
-            />
-            <p className="mt-3 text-gray-600 italic">Go the extra mile to impress recruiters!</p>
-          </div>
-        </section>
-
-        {/* Display userId for multi-user context (MANDATORY) */}
-        {isAuthReady && userId && (
-          <div className="text-xs text-gray-500 text-center mt-12 p-2 bg-gray-100 rounded-md">
-            User ID: {userId} (This ID is for collaborative features and may vary across sessions)
-          </div>
-        )}
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-blue-900 text-white p-4 text-center text-sm mt-8 shadow-inner">
-        &copy; {new Date().getFullYear()} TechUprise Resume Guide
-      </footer>
+    <!-- Watermark Overlay -->
+    <div class="watermark-overlay">
+        <span class="watermark-text">TechUprise</span>
     </div>
-  );
-};
 
-export default App;
+    <!-- Main Content Area -->
+    <main class="flex-grow container mx-auto px-4 py-8 md:px-8 lg:px-12 relative z-10">
+
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 md:p-12 lg:p-16 rounded-xl shadow-lg mb-12 relative overflow-hidden">
+            <!-- Decorative shapes -->
+            <div class="absolute top-0 left-0 w-32 h-32 bg-purple-500 opacity-20 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+            <div class="absolute bottom-0 right-0 w-48 h-48 bg-blue-500 opacity-20 rounded-full translate-x-1/2 -translate-y-1/2"></div>
+
+            <!-- Product Name -->
+            <p class="text-xl sm:text-2xl lg:text-3xl font-extrabold mb-2 leading-tight">
+                TechUprise: Interview Xpress 30
+            </p>
+            <!-- Tagline -->
+            <p class="text-lg sm:text-xl font-light mb-4 italic">
+                From Resume to Recruiter Calls — All in 30 Days.
+            </p>
+            <!-- Guide Title -->
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 leading-tight">
+                Ultimate Resume Guide for Tech Students
+            </h1>
+
+            <div class="mt-6 flex flex-col sm:flex-row items-center sm:space-x-4 space-y-4 sm:space-y-0">
+                <img
+                  src="https://placehold.co/150x150/800080/FFFFFF?text=Success"
+                  alt="Success Icon"
+                  class="w-20 h-20 sm:w-24 sm:h-24 rounded-full shadow-md border-4 border-purple-300"
+                  onerror="this.onerror=null; this.src='https://placehold.co/150x150/800080/FFFFFF?text=Success';"
+                />
+                <p class="text-md sm:text-lg italic font-medium">
+                    "Loved by recruiters at FAANG & startups alike."
+                </p>
+            </div>
+        </section>
+
+        <!-- Template Section -->
+        <section class="bg-blue-50 p-6 md:p-8 rounded-xl shadow-md mb-12 border border-blue-200">
+            <h2 class="text-2xl lg:text-3xl font-bold text-blue-900 mb-4 flex items-center">
+                <i data-lucide="pin" class="mr-2 text-purple-600 w-7 h-7"></i> Template Recommended:
+            </h2>
+            <div class="flex flex-col md:flex-row items-center md:space-x-8 space-y-6 md:space-y-0">
+                <div class="md:w-1/3">
+                    <img
+                      src="https://placehold.co/300x200/ADD8E6/00008B?text=Clean+Resume"
+                      alt="Clean Resume Template"
+                      class="w-full h-auto rounded-lg shadow-lg border border-blue-300"
+                      onerror="this.onerror=null; this.src='https://placehold.co/300x200/ADD8E6/00008B?text=Clean+Resume';"
+                    />
+                </div>
+                <div class="md:w-2/3">
+                    <h3 class="text-xl font-semibold text-purple-700 mb-2">
+                        <a
+                            href="https://github.com/JakeHamilton/JakeResume"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-blue-600 hover:underline flex items-center"
+                        >
+                            Jake’s Overleaf Resume <i data-lucide="external-link" class="ml-1 w-5 h-5"></i>
+                        </a>
+                    </h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Clean and modern design.</li>
+                        <li>Single-page format.</li>
+                        <li>Highly ATS-friendly (Applicant Tracking System).</li>
+                    </ul>
+                    <p class="mt-4 text-gray-700">
+                        This template is a favorite among recruiters at top tech companies.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Checklist Section -->
+        <section class="bg-white p-6 md:p-8 rounded-xl shadow-md mb-12 border border-gray-200">
+            <h2 class="text-2xl lg:text-3xl font-bold text-blue-900 mb-6 flex items-center">
+                <i data-lucide="search" class="mr-2 text-pink-600 w-7 h-7"></i> Resume Checklist (Before You Submit)
+            </h2>
+
+            <!-- Format & Structure -->
+            <div class="mb-8">
+                <h3 class="text-xl lg:text-2xl font-semibold text-blue-700 mb-4 flex items-center">
+                    <i data-lucide="check-circle-2" class="mr-2 text-green-500 w-6 h-6"></i> 1. Format & Structure
+                </h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start text-gray-800">
+                        <i data-lucide="check-circle-2" class="text-green-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                        <p>
+                            <strong class="text-blue-800">One page only</strong> – Recruiters won’t scroll. (Unless you're 4+ years experienced).
+                        </p>
+                    </li>
+                    <li class="flex items-start text-gray-800">
+                        <i data-lucide="check-circle-2" class="text-green-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                        <p>
+                            <strong class="text-blue-800">Reverse chronological order</strong> – Most recent roles/projects first.
+                        </p>
+                    </li>
+                    <li class="flex items-start text-gray-800">
+                        <i data-lucide="check-circle-2" class="text-green-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                        <p>
+                            Use <strong class="text-blue-800">bullet points</strong>, not paragraphs.
+                        </p>
+                    </li>
+                    <li class="flex items-start text-gray-800">
+                        <i data-lucide="check-circle-2" class="text-green-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                        <p>
+                            <strong class="text-blue-800">Font size:</strong> 10–11pt (legible, compact).
+                        </p>
+                    </li>
+                    <li class="flex items-start text-gray-800">
+                        <i data-lucide="check-circle-2" class="text-green-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                        <p>
+                            <strong class="text-blue-800">Standard Sections Order:</strong>
+                        </p>
+                        <ul class="list-disc list-inside ml-6 text-gray-700 mt-1">
+                            <li>Education</li>
+                            <li>Experience / Internships</li>
+                            <li>Projects</li>
+                            <li>Skills</li>
+                            <li>(Optional) Certifications / Achievements</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Content Must-Haves -->
+            <div>
+                <h3 class="text-xl lg:text-2xl font-semibold text-blue-700 mb-4 flex items-center">
+                    <i data-lucide="check-circle-2" class="mr-2 text-green-500 w-6 h-6"></i> 2. Content Must-Haves
+                </h3>
+
+                <!-- Education -->
+                <div class="mb-6 bg-blue-50 p-4 rounded-lg shadow-sm border border-blue-200">
+                    <h4 class="text-lg font-semibold text-blue-900 mb-2 flex items-center">
+                        <i data-lucide="graduation-cap" class="mr-2 text-purple-600 w-5 h-5"></i> Education
+                    </h4>
+                    <ul class="list-disc list-inside text-gray-800 space-y-1">
+                        <li>Degree, Institute, Location, Year</li>
+                        <li>Include CGPA only if above 7.0</li>
+                    </ul>
+                </div>
+
+                <!-- Experience -->
+                <div class="mb-6 bg-blue-50 p-4 rounded-lg shadow-sm border border-blue-200">
+                    <h4 class="text-lg font-semibold text-blue-900 mb-2 flex items-center">
+                        <i data-lucide="briefcase" class="mr-2 text-pink-600 w-5 h-5"></i> Experience
+                    </h4>
+                    <ul class="list-disc list-inside text-gray-800 space-y-1">
+                        <li>Company name, role, duration</li>
+                        <li>
+                            Use <strong class="text-blue-800">action verbs:</strong> Built, Designed, Automated, Increased.
+                        </li>
+                        <li>
+                            Mention <strong class="text-blue-800">impact:</strong> numbers &gt; responsibilities.
+                        </li>
+                        <li class="ml-4 italic text-gray-600">
+                            Example: Improved page load speed by 40%, automated 60% of deployment process.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Projects -->
+                <div class="mb-6 bg-blue-50 p-4 rounded-lg shadow-sm border border-blue-200">
+                    <h4 class="text-lg font-semibold text-blue-900 mb-2 flex items-center">
+                        <i data-lucide="laptop" class="mr-2 text-purple-600 w-5 h-5"></i> Projects
+                    </h4>
+                    <ul class="list-disc list-inside text-gray-800 space-y-1">
+                        <li>Only <strong class="text-blue-800">2–3 strong projects</strong>.</li>
+                        <li>
+                            <strong class="text-blue-800">Mention:</strong>
+                            <ul class="list-circle list-inside ml-6 text-gray-700 mt-1">
+                                <li>What it does</li>
+                                <li>What tech stack used</li>
+                                <li>What problem solved / outcome achieved</li>
+                            </ul>
+                        </li>
+                        <li>Add <strong class="text-blue-800">GitHub/Deployed link (must work!)</strong></li>
+                    </ul>
+                </div>
+
+                <!-- Skills -->
+                <div class="bg-blue-50 p-4 rounded-lg shadow-sm border border-blue-200">
+                    <h4 class="text-lg font-semibold text-blue-900 mb-2 flex items-center">
+                        <i data-lucide="wrench" class="mr-2 text-pink-600 w-5 h-5"></i> Skills
+                    </h4>
+                    <ul class="list-disc list-inside text-gray-800 space-y-1">
+                        <li>
+                            <strong class="text-blue-800">Divide into:</strong>
+                            <ul class="list-circle list-inside ml-6 text-gray-700 mt-1">
+                                <li>Languages (Python, Java)</li>
+                                <li>Frameworks (React, Node.js)</li>
+                                <li>Tools (Git, Docker, VSCode)</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Avoid generic words like “Teamwork”, “Fast learner” in skills section.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ATS Optimization Tips -->
+        <section class="bg-purple-50 p-6 md:p-8 rounded-xl shadow-md mb-12 border border-purple-200">
+            <h2 class="text-2xl lg:text-3xl font-bold text-blue-900 mb-6 flex items-center">
+                <i data-lucide="search" class="mr-2 text-blue-600 w-7 h-7"></i> ATS Optimization Tips
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-purple-700 mb-3">Best Practices:</h3>
+                    <ul class="list-disc list-inside text-gray-800 space-y-2">
+                        <li>Stick to <strong class="text-blue-800">standard section names</strong>: “Experience”, “Education”, etc.</li>
+                        <li><strong class="text-blue-800">Save as PDF</strong> (not Word or image).</li>
+                        <li>Use <strong class="text-blue-800">exact keywords</strong> from the job description (e.g., If JD says “React + Redux”, mention both, not just “React”).</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-purple-700 mb-3">What to Avoid:</h3>
+                    <ul class="list-disc list-inside text-gray-800 space-y-2">
+                        <li>Tables, columns</li>
+                        <li>Logos/images/icons</li>
+                        <li>Uncommon fonts</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <img
+                  src="https://placehold.co/400x150/00008B/FFFFFF?text=ATS+Friendly"
+                  alt="ATS Friendly graphic"
+                  class="mx-auto rounded-lg shadow-md border border-blue-300"
+                  onerror="this.onerror=null; this.src='https://placehold.co/400x150/00008B/FFFFFF?text=ATS+Friendly';"
+                />
+                <p class="mt-3 text-gray-600 italic">Ensure your resume passes the Applicant Tracking System test!</p>
+            </div>
+        </section>
+
+        <!-- Bonus: Free Resume Scoring Tools -->
+        <section class="bg-pink-50 p-6 md:p-8 rounded-xl shadow-md mb-12 border border-pink-200">
+            <h2 class="text-2xl lg:text-3xl font-bold text-blue-900 mb-6 flex items-center">
+                <i data-lucide="star" class="mr-2 text-purple-600 w-7 h-7"></i> Bonus: Free Resume Scoring Tools
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="bg-white p-5 rounded-lg shadow-sm border border-pink-100 flex flex-col items-center">
+                    <img
+                      src="https://placehold.co/80x80/FFC0CB/800080?text=Worded"
+                      alt="Resume Worded Logo"
+                      class="w-20 h-20 rounded-full mb-3"
+                      onerror="this.onerror=null; this.src='https://placehold.co/80x80/FFC0CB/800080?text=Worded';"
+                    />
+                    <h3 class="text-xl font-semibold text-pink-700 mb-2">Resume Worded</h3>
+                    <p class="text-gray-700">Gives resume score + instant tips.</p>
+                    <a href="https://resumeworded.com/" target="_blank" rel="noopener noreferrer" class="mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                        Learn More <i data-lucide="external-link" class="ml-1 w-4 h-4"></i>
+                    </a>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow-sm border border-pink-100 flex flex-col items-center">
+                    <img
+                      src="https://placehold.co/80x80/FFC0CB/800080?text=Jobscan"
+                      alt="Jobscan Logo"
+                      class="w-20 h-20 rounded-full mb-3"
+                      onerror="this.onerror=null; this.src='https://placehold.co/80x80/FFC0CB/800080?text=Jobscan';"
+                    />
+                    <h3 class="text-xl font-semibold text-pink-700 mb-2">Jobscan</h3>
+                    <p class="text-gray-700">Compare resume vs job description.</p>
+                    <a href="https://www.jobscan.co/" target="_blank" rel="noopener noreferrer" class="mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                        Learn More <i data-lucide="external-link" class="ml-1 w-4 h-4"></i>
+                    </a>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow-sm border border-pink-100 flex flex-col items-center">
+                    <img
+                      src="https://placehold.co/80x80/FFC0CB/800080?text=Rezi.ai"
+                      alt="Rezi.ai Logo"
+                      class="w-20 h-20 rounded-full mb-3"
+                      onerror="this.onerror=null; this.src='https://placehold.co/80x80/FFC0CB/800080?text=Rezi.ai';"
+                    />
+                    <h3 class="text-xl font-semibold text-pink-700 mb-2">Rezi.ai</h3>
+                    <p class="text-gray-700">AI resume checks and suggestions.</p>
+                    <a href="#" class="mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                        Learn More <i data-lucide="external-link" class="ml-1 w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recruiter Red Flags to Avoid -->
+        <section class="bg-red-50 p-6 md:p-8 rounded-xl shadow-md mb-12 border border-red-200">
+            <h2 class="text-2xl lg:text-3xl font-bold text-blue-900 mb-6 flex items-center">
+                <i data-lucide="x-circle" class="mr-2 text-red-600 w-7 h-7"></i> Recruiter Red Flags to Avoid
+            </h2>
+            <ul class="space-y-3">
+                <li class="flex items-start text-gray-800">
+                    <i data-lucide="x-circle" class="text-red-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                    <p>
+                        <strong class="text-red-700">More than 1 page</strong> (unless you’re 4+ years experienced).
+                    </p>
+                </li>
+                <li class="flex items-start text-gray-800">
+                    <i data-lucide="x-circle" class="text-red-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                    <p>
+                        <strong class="text-red-700">Lies / skills you can’t explain.</strong>
+                    </p>
+                </li>
+                <li class="flex items-start text-gray-800">
+                    <i data-lucide="x-circle" class="text-red-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                    <p>
+                        <strong class="text-red-700">Fluff</strong> like “Passionate, hardworking, team player”.
+                    </p>
+                </li>
+                <li class="flex items-start text-gray-800">
+                    <i data-lucide="x-circle" class="text-red-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                    <p>
+                        <strong class="text-red-700">No project links or GitHub.</strong>
+                    </p>
+                </li>
+                <li class="flex items-start text-gray-800">
+                    <i data-lucide="x-circle" class="text-red-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                    <p>
+                        <strong class="text-red-700">Mentioning high school details</strong> in college resume.
+                    </p>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Pro Tips for Standing Out -->
+        <section class="bg-blue-100 p-6 md:p-8 rounded-xl shadow-md mb-12 border border-blue-200">
+            <h2 class="text-2xl lg:text-3xl font-bold text-blue-900 mb-6 flex items-center">
+                <i data-lucide="pin" class="mr-2 text-purple-600 w-7 h-7"></i> Pro Tips for Standing Out
+            </h2>
+            <ul class="space-y-3">
+                <li class="flex items-start text-gray-800">
+                    <i data-lucide="pin" class="text-blue-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                    <p>
+                        Add a <strong class="text-blue-800">LinkedIn + GitHub link</strong> at top right (make sure they’re updated).
+                    </p>
+                </li>
+                <li class="flex items-start text-gray-800">
+                    <i data-lucide="pin" class="text-blue-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                    <p>
+                        <strong class="text-blue-800">Tailor your resume slightly for every job</strong> (skills section/order).
+                    </p>
+                </li>
+                <li class="flex items-start text-gray-800">
+                    <i data-lucide="pin" class="text-blue-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                    <p>
+                        Mention <strong class="text-blue-800">outcomes and metrics</strong> for each role or project.
+                    </p>
+                </li>
+                <li class="flex items-start text-gray-800">
+                    <i data-lucide="pin" class="text-blue-500 mr-2 flex-shrink-0 mt-1 w-5 h-5"></i>
+                    <p>
+                        <strong class="text-blue-800">Have someone review it.</strong>
+                    </p>
+                </li>
+            </ul>
+            <div class="mt-8 text-center">
+                <img
+                  src="https://placehold.co/400x150/800080/FFFFFF?text=Stand+Out"
+                  alt="Stand Out graphic"
+                  class="mx-auto rounded-lg shadow-md border border-purple-300"
+                  onerror="this.onerror=null; this.src='https://placehold.co/400x150/800080/FFFFFF?text=Stand+Out';"
+                />
+                <p class="mt-3 text-gray-600 italic">Go the extra mile to impress recruiters!</p>
+            </div>
+        </section>
+
+        <!-- Dummy User ID Section (Not relevant for static HTML, but retained for consistency) -->
+        <div class="text-xs text-gray-500 text-center mt-12 p-2 bg-gray-100 rounded-md">
+            User ID: guide-viewer-id (This ID is for collaborative features and may vary across sessions)
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white p-4 text-center text-sm mt-8 shadow-inner">
+        &copy; <span id="current-year"></span> TechUprise Resume Guide
+    </footer>
+
+    <!-- Lucide Icons CDN for visual elements -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Lucide icons
+            // The 'defer' attribute on the script tag helps ensure it's loaded before DOMContentLoaded fires,
+            // but adding an extra check here for maximum robustness in various environments.
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                try {
+                    lucide.createIcons();
+                } catch (error) {
+                    console.error("Error initializing Lucide icons:", error);
+                }
+            } else {
+                // Fallback for cases where Lucide might still not be ready,
+                // or if the CDN itself fails to load.
+                console.warn("Lucide library not loaded or createIcons not found. Icons may not display.");
+            }
+
+            // Set dynamic copyright year in footer
+            const currentYearSpan = document.getElementById('current-year');
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            } else {
+                console.error("Element with ID 'current-year' not found in footer. Cannot set copyright year.");
+            }
+        });
+    </script>
+</body>
+</html>
